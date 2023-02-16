@@ -6,6 +6,6 @@ from todo_app.models import TODO
 
 def detail_view(request: WSGIRequest, pk):
     todo = get_object_or_404(TODO, pk=pk)
-    return render(request, 'article.html', context={
+    return render(request, 'detail_view_todo.html', context={
         'todo': todo
     })

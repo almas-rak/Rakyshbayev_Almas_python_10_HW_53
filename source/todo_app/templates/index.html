@@ -25,7 +25,7 @@
     <tbody>
         <tr>
             {% for todo in todos %}
-            <th><a href="#">{{ todo.title }}</a></th>
+            <th><a href="{% url 'todo_detail' todo.pk %}">{{ todo.title }}</a></th>
             <td>{{ todo.status }}</td>
             <td>{{ todo.date_of_completion }}</td>
             {% endfor %}
