@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}Задачи{% endblock title %}
+{% block content %}
+<div class="container">
+<table id="result-list">
+    <thead>
+        <tr>
+            <th scope="col">
+                <div class="text">
+                    <span>Заголовок</span>
+                </div>
+            </th>
+            <th scope="col">
+                <div class="text">
+                    <span>Статус</span>
+                </div>
+            </th>
+            <th scope="col">
+                <div class="text">
+                    <span>Дата завершения</span>
+                </div>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            {% for todo in todos %}
+            <td>{{ todo.title }}</td>
+            <td>{{ todo.status }}</td>
+            <td>{{ todo.date_of_completion }}</td>
+            {% endfor %}
+        </tr>
+    </tbody>
+</table>
+</div>
+{% endblock content %}
