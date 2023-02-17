@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block title %}Изменить задачу{% endblock title %}
+{% block content %}
+<form action="{% url 'edit_todo' todo.pk %}" method="POST">
+    {% csrf_token %}
+
+    <div>
+        <label class="required" for="title">Заголовок:</label>   
+        <input type="text" name="title" maxlength="64" id="title" required value="{{todo.title}}"> 
+    </div>
+    <div>
+        <label for="status">Статус:</label>
+        <select name="status" id="status">
+            {% if todo.status == "new" %}
+            <option value="new" selected>Новая</option>
+            <option value="in_progress">В процессе </option>
+            <option value="completed">Завершено</option>
+            {% elif todo.status == "in_progress"%}
+            <option value="new">Новая</option>
+            <option value="in_progress" selected>В процессе </option>
+            <option value="completed">Завершено</option>
+            {% else %}
+            <option value="new">Новая</option>
+            <option value="in_progress">В процессе </option>
+            <option value="completed" selected>Завершено</option>
+            {% endif %}
+        </select>
+    </div>
+    <div>
+        <label for="date_of_completion">Дата завершения:</label>
+        <input type="date" id="date_of_completion" name="date_of_completion" value="{{ todo.date_of_completion | date:'Y-m-d' }}">
+    </div>
+    <div>
+        <label for="description">Описание:</label>
+        <textarea style="resize:none;" name="description" id="description" cols="60" rows="20"  maxlength="2000">
+            {{ todo.description }}
+        </textarea>        
+    </div>
+    <div>
+        <input type="submit">
+    </div>
+</form>
+{% endblock content %}
+
+
